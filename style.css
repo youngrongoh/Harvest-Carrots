@@ -1,0 +1,13 @@
+/* CSS Reset */
+* {
+    box-sizing: border-box;
+    /* font-family: 'Modak', cursive; */
+    font-family: 'Indie Flower', cursive;
+}
+
+button {
+    outline: none;
+    background: none;
+    border: none;
+}
+
