@@ -70,3 +70,34 @@ body {
         line-height: 3rem;
         margin: 0 auto;
     }
+
+    /* Playground */
+    #playground {
+        margin: 4% auto;
+        width: 95%;
+        height: 42%;
+    }
+
+    .playground__carrot {
+        padding: 0;
+        width: 35px;
+        height: 65px;
+        position: relative;
+    }
+
+    .playground__carrot img {
+        position: relative;
+        left: -15px;
+    }
+
+    .playground__bug {
+        padding: 0;
+        width: 50px;
+        height: 45px;
+        position: relative;
+    }
+
+    .playground__bug img {
+        position: relative;
+        top: -3px;
+    }
