@@ -9,10 +9,7 @@ button {
     outline: none;
     background: none;
     border: none;
-}
-
-button:hover {
-    transform: scale(1.1);
+    cursor: pointer;
 }
 
 /* Styling */
@@ -46,6 +43,11 @@ body {
         width: 60px;
         height: 60px;
         font-size: 1.5rem;
+    }
+
+    .dashboard__play:hover,
+    .result__restart:hover {
+        transform: scale(1.1);
     }
     
     .dashboard__play {
@@ -82,13 +84,19 @@ body {
         margin: 4% auto;
         width: 95%;
         height: 42%;
+        position: relative;
+    }
+
+    .reset {
+        position: absolute;
+        top: 0;
+        left: 0;
     }
 
     .playground__carrot {
         padding: 0;
         width: 35px;
         height: 65px;
-        position: relative;
     }
 
     .playground__carrot img {
@@ -100,12 +108,15 @@ body {
         padding: 0;
         width: 50px;
         height: 45px;
-        position: relative;
     }
 
     .playground__bug img {
         position: relative;
         top: -3px;
+    }
+    .playground__carrot img:hover,
+    .playground__bug img:hover {
+        transform: scale(1.1);
     }
 
     /* Result */
@@ -121,13 +132,18 @@ body {
         border-radius: 20px;
     }
 
+    .result.inactive {
+        opacity: 0;
+        pointer-events: none;
+    }
+
     .result__restart {
         background-color: lightgray;
     }
 
     .result__msg {
         text-transform: uppercase;
-        font-size: 3rem;
+        font-size: 2rem;
     }
 
 
