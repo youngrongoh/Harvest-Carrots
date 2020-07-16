@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fun Game</title>
+    <!-- Font Awesome -->
+    <script src="https://kit.fontawesome.com/4eb8bfd01f.js" crossorigin="anonymous"></script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Indie+Flower&family=Modak&display=swap" rel="stylesheet">
+    <!-- CSS -->
+    <link rel="stylesheet" href="style.css">
+    <!-- JS -->
+    <script src="./main.js" defer></script>
+</head>
+
+<body>
+    <section id="game">
+        <header id="dashboard">
+            <button class="dashboard__play">
+                <i class="fas fa-play"></i>
+                <!-- <i class="fas fa-stop"></i> -->
+            </button>
+            <div class="dashboard__timer">0:0</div>
+            <div class="dashboard__count">10</div>
+        </header>
+        <main id="playground">
+            <div class="carrot">
+                <img src="./img/carrot.png" alt="carrot click!">
+            </div>
+            <div class="bug">
+                <img src="./img/bug.png" alt="carrot click!">
+            </div>
+        </main>
+        <div class="result">
+            <button class="result__restart">
+                <i class="fas fa-redo"></i>
+            </button>
+            <div class="result__msg">You won</div>
+        </div>
+    </section>
+</body>
+
+</html>
