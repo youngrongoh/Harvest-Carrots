@@ -172,6 +172,7 @@ body {
         background-color: rgba(80, 80, 80, 0.8);
         color: white;
         padding-top: 60px;
+        border-radius: 30px;
     }
 
     .cover__title {
