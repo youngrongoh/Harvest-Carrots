@@ -17,7 +17,7 @@ function toggleResult(state) {
         result.classList.add('inactive');
     }
 }
-
+// hide game cover
 function inactiveCover() {
     cover.classList.add('inactive');
 }
@@ -53,6 +53,7 @@ function soundPlay(sound) {
 let stopVal = 0;
 function timer(sec) {
     let timerId = setInterval(() => {
+        // Stop condition
         if (sec < 0) {
             clearInterval(timerId);
             gameStop();
@@ -90,7 +91,7 @@ function toggleIconOfplay(state) {
     }
 }
 
-// create items
+// Create items
 function createItem(item) {
     switch (item) {
         case 'carrot':
@@ -112,7 +113,7 @@ function countCarrot() {
     count.innerText = carrots.length;
 }
 
-// Random
+// Return int value randomly in specific range(min & max).
 function getRandomInt(min, max) {
     min = Math.ceil(min);
     max = Math.floor(max);
@@ -131,10 +132,12 @@ function spreadItems(item) {
     }
 }
 
+// Reset playground
 function removeAll() {
     playground.innerHTML = ''
 }
 
+// Game logic
 function gameStart() {
     time.innerText = '0:10';
     toggleResult('inactive');
@@ -198,7 +201,7 @@ playground.addEventListener('mousedown', e => {
     }
 });
 
-// Buttons action
+// Buttons action for click event.
 playBtn.addEventListener('click', () => {
     if (iconOfplay.className === 'fas fa-play') {
         gameStart();
@@ -211,13 +214,16 @@ restartBtn.addEventListener('click', () => {
     gameStart();
 });
 
-window.addEventListener('load', () => soundPlay('bgm'));
 
 startBtnOnCover.addEventListener('click', () => {
     inactiveCover();
     gameStart();
 });
 
+// Play this sound, when hovered start button on game cover.
 startBtnOnCover.addEventListener('mouseover', () => {
     soundPlay('carrot');
 });
+
+// When page load, play bgm.
+window.addEventListener('load', () => soundPlay('bgm'));
