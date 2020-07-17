@@ -6,6 +6,8 @@ const restartBtn = document.querySelector('.result__restart')
 const resultMsg = document.querySelector('.result__msg');
 const playground = document.querySelector('#playground');
 const count = document.querySelector('.dashboard__count');
+const cover = document.querySelector('#cover');
+const startBtnOnCover = document.querySelector('.cover__start');
 
 // Change display status of result.
 function toggleResult(state) {
@@ -16,18 +18,51 @@ function toggleResult(state) {
     }
 }
 
+function inactiveCover() {
+    cover.classList.add('inactive');
+}
+
+//  Audio
+bgm = new Audio('./sound/bg.mp3');
+bugPull = new Audio('./sound/bug_pull.mp3');
+carrotPull = new Audio('./sound/carrot_pull.mp3');
+win = new Audio('./sound/game_win.mp3');
+alertSound = new Audio('./sound/alert.wav');
+function soundPlay(sound) {
+    switch (sound) {
+        case 'bgm':
+            bgm.play();
+            break;
+        case 'bug':
+            bugPull.play();
+            break;
+        case 'carrot':
+            carrotPull.currentTime = 0;
+            carrotPull.play();
+            break;
+        case 'win':
+            win.play();
+            break;
+        case 'alert':
+            alertSound.play();
+            break;
+    }
+}
+
 // Timer
 let stopVal = 0;
 function timer(sec) {
     let timerId = setInterval(() => {
-        time.innerText = `0:${sec}`
-        sec--;
         if (sec < 0) {
             clearInterval(timerId);
-            gameOver();
+            gameStop();
+            return;
         } else if (stopVal === 1) {
             clearInterval(timerId);
+            return;
         }
+        time.innerText = `0:${sec}`
+        sec--;
     }, 1000);
 }
 
@@ -101,20 +136,26 @@ function removeAll() {
 }
 
 function gameStart() {
+    time.innerText = '0:10';
     toggleResult('inactive');
     toggleIconOfplay('stop');
     removeAll();
     spreadItems('carrot');
     spreadItems('bug');
     countCarrot();
-    timer(10);
+    timer(9);
     stopVal = 0;
+    soundPlay('alert');
+    if (bgm.paused) {
+        soundPlay('bgm')
+    };
 }
 
 function gameStop() {
     toggleResult('active');
     toggleIconOfplay('play');
     changeMsg('stop');
+    soundPlay('bug');
     stopVal = 1;
 }
 
@@ -122,29 +163,34 @@ function gameOver() {
     toggleResult('active');
     toggleIconOfplay('play');
     changeMsg('lose');
+    stopVal = 1;
 }
 
 function gameClear() {
     toggleResult('active');
     toggleIconOfplay('play');
     changeMsg('win');
+    soundPlay('win');
     stopVal = 1;
 }
 
-// Game logic
-playground.addEventListener('click', e => {
+// Disable drag selection
+window.addEventListener('mousedown', e => {
+    e.preventDefault();
+});
+
+// Game interaction
+playground.addEventListener('mousedown', e => {
     switch (e.target.parentElement.classList[0]) {
         case 'playground__carrot':
-            console.log('carrot!');
             e.target.parentElement.remove();
-            countCarrot()
+            countCarrot();
+            soundPlay('carrot');
             break;
         case 'playground__bug':
-            console.log('bug..');
             e.target.parentElement.remove();
-            toggleIconOfplay('play');
-            toggleResult('active');
-            changeMsg('lose');
+            soundPlay('bug');
+            gameOver();
             break;
     }
     if (count.innerText == 0) {
@@ -163,4 +209,15 @@ playBtn.addEventListener('click', () => {
 
 restartBtn.addEventListener('click', () => {
     gameStart();
+});
+
+window.addEventListener('load', () => soundPlay('bgm'));
+
+startBtnOnCover.addEventListener('click', () => {
+    inactiveCover();
+    gameStart();
+});
+
+startBtnOnCover.addEventListener('mouseover', () => {
+    soundPlay('carrot');
 });
